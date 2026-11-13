@@ -1,0 +1,21 @@
+name: ci
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: JVM tests (JNI built for the host) and release AAR
+        run: ./gradlew --no-daemon :vban:testDebugUnitTest :vban:assembleRelease -Pvban.ndkPath=$ANDROID_NDK_LATEST_HOME
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vban-release.aar
+          path: vban/build/outputs/aar/vban-release.aar
