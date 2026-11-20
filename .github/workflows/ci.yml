@@ -15,6 +15,8 @@ jobs:
           java-version: 17
       - name: JVM tests (JNI built for the host) and release AAR
         run: ./gradlew --no-daemon :vban:testDebugUnitTest :vban:assembleRelease -Pvban.ndkPath=$ANDROID_NDK_LATEST_HOME
+      - name: Example app
+        run: ./gradlew --no-daemon :app:assembleDebug -Pvban.ndkPath=$ANDROID_NDK_LATEST_HOME
       - uses: actions/upload-artifact@v4
         with:
           name: vban-release.aar

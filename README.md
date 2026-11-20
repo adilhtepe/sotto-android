@@ -86,6 +86,14 @@ on Android bionic (arm64, x86_64).
 Not tested here: on a device or emulator, with AAudio/Oboe, or how a device treats the `nice -19`
 priority request.
 
+## Example app: VBAN Transmitter
+`app/` is a complete Android app built on this library (`:app`, depends on `:vban`): it streams media,
+device audio or the microphone to a VBAN receiver, discovers receivers on the LAN and can also play a
+stream. See [app/README.md](app/README.md).
+```bash
+./gradlew :app:assembleDebug -Pvban.ndkPath=/path/to/ndk
+```
+
 ## Thanks
 This is part of **Sotto** (the `sotto` repository links all of its repositories). VBAN is the
 protocol of VB-Audio Software; Sotto is an independent implementation, not affiliated with

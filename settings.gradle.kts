@@ -1,4 +1,4 @@
-// Standalone build of the VBAN SDK Android library. Apps can also include
+// Standalone build of the VBAN SDK Android library (:vban) and the example app (:app). Other apps can also include
 // it with: includeBuild("<path>/SDK/android") or include(":vban") + projectDir.
 pluginManagement {
     repositories {
@@ -15,4 +15,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "vban-sdk-android"
-include(":vban")
+include(":vban", ":app")
